@@ -38,7 +38,7 @@ import { last } from "rxjs";
         </section>
         <section class="listing-apply">
           <h2 class="section-heading">Apply now to live here.</h2>
-          <form [formGroup]="applyForm" (submit)="submitApplication()" )>
+          <form [formGroup]="applyForm" (submit)="submitApplication()">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" formControlName="firstName" />
             <label for="lastName">Last Name</label>
@@ -72,7 +72,8 @@ export class DetailsComponent {
   }
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params["id"]);
-    this.housingLocation =
-      this.housingService.getLocationById(housingLocationId);
+    this.housingService.getLocationById(housingLocationId).then((location) => {
+      this.housingLocation = location;
+    });
   }
 }
